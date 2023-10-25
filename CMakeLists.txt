@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.18)
 
-project(cpp-template)
+project(tictactoe)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 set( CMAKE_CXX_FLAGS "-g -Wall -Wl,--no-as-needed -ldl" )
 
@@ -12,6 +12,7 @@ if(${COVERAGE})
 	include(CodeCoverage)
 endif(${COVERAGE})
 
+add_subdirectory(src)
 if(${TESTS})
 add_subdirectory(tests)
 	if(${COVERAGE})
