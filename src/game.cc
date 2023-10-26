@@ -2,7 +2,18 @@
 
 #include "game.h"
 
-Game::Game(Player *p1, Player *p2, Board *b): p1{p1}, p2{p2}, b{b} {}
+class CommandLineBoardRefresher : public BoardRefresher<char> {
+	void refresh(std::pair<int, int> field, char change) override {
+		std::cout << change << " ";
+	}
+	void rowEnd(int rowEnd) override {
+		std::cout << std::endl << "- - -" << std::endl;
+	}
+};
+
+CommandLineBoardRefresher refresher;
+
+Game::Game(Player *p1, Player *p2, Board<char> *b): p1{p1}, p2{p2}, b{b} {}
 
 void Game::tryMove(Player *p, std::function<void(std::pair<int, int>, bool)> tried)
 {
@@ -37,9 +48,7 @@ Player *Game::start()
 			if (!done)
 				std::cout << "x = " << move.first << " and y = " << move.second << 
 				" is not emtpy" << std::endl << "try again." << std::endl;
-			this->b->printBoard([](char c) {
-				std::cout << c << " ";
-			}, []() {std::cout << std::endl << "- - -" << std::endl;});
+			this->b->refresh(&refresher);
 			std::cout << "-----" << std::endl;
 		};
 		

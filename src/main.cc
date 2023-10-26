@@ -1,11 +1,11 @@
 #include <iostream>
 
-#include "board.h"
+#include "tictactoeboard.h"
 #include "game.h"
 
 int main(int argc, char **argv)
 {
-	Board b{};
+	TicTacToeBoard b{};
 	Player p1("one", 'x');
 	Player p2("two", 'o');
 	Player *winner = nullptr;

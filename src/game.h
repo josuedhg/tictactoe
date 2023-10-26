@@ -9,9 +9,9 @@
 class Game {
 	Player *p1;
 	Player *p2;
-	Board *b;
+	Board<char> *b;
 public:
-	Game(Player *p1, Player *p2, Board *b);
+	Game(Player *p1, Player *p2, Board<char> *b);
 	Player *start();
 private:
 	std::pair<int, int> getMove();
